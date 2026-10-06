@@ -1,0 +1,125 @@
+# README.md
+
+```markdown
+# Edu-Motherwell Development Organisation Website
+
+Welcome to the official repository for the **Edu-Motherwell Development Organisation Website**. This project provides a web presence to showcase community initiatives, literacy programs, educational support, and contact channels for the Edu-Motherwell Development Organisation.
+
+---
+
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Folder Structure](#folder-structure)
+3. [Features](#features)
+4. [Technologies Used](#technologies-used)
+5. [Getting Started](#getting-started)
+6. [Usage](#usage)
+7. [Author & License](#author--license)
+
+---
+
+## Project Overview
+
+The Edu-Motherwell Development Organisation website is designed to inform community members, partners, and donors about ongoing social and educational projects. It provides accessible navigation across core site pages, including program details, organizational background, inquiry forms, and contact information.
+
+---
+
+## Folder Structure
+
+```text
+Thandeka-Ngambu-Assignment-1-Part-2-main/
+│
+├── index.html                  # Main homepage
+├── CHANGELOG.md                # Project revision history
+├── README.md                   # Repository documentation
+│
+├── css/
+│   └── style.css              # Main stylesheet
+│
+├── images/
+│   ├── Company.logo.jpg        # Organization header logo
+│   ├── Literacy.jpg            # Program showcase image
+│   ├── school-org.jpg          # Educational initiative banner
+│   ├── Picture-12.jpg          # Event gallery image
+│   ├── IMG_2302.jpg            # Community engagement photo
+│   ├── facebook.logo.avif      # Social media icon
+│   └── ...                     # Additional image assets
+│
+└── pages/
+    ├── About.html              # Organization mission, vision, and values
+    ├── services.html           # Detailed list of programs and services
+    ├── Enquiry.html            # Inquiries and feedback form
+    └── ContactUs.html          # Contact details and location information
+
+```
+
+---
+
+## Features
+
+* **Semantic HTML5 Layout**: Structured content with accessible semantic tags across all pages.
+* **Responsive Custom CSS**: Styled navigation bar, header logos, main content cards, and footers.
+* **Interactive Forms**: Dedicated pages for general inquiries (`Enquiry.html`) and direct contact (`ContactUs.html`).
+* **Media Asset Integration**: Optimized images representing educational campaigns and community activities.
+
+---
+
+## Technologies Used
+
+* **HTML5**: Page structure and semantic markup.
+* **CSS3**: Layout design, typography, color scheme, and element styling.
+* **Git & GitHub**: Version control and repository hosting.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+To view or edit the project locally, you need:
+
+* A modern web browser (e.g., Google Chrome, Mozilla Firefox, Microsoft Edge).
+* A text editor or IDE (e.g., VS Code, Sublime Text).
+* Git installed on your local system.
+
+### Installation
+
+1. **Clone the repository**:
+```bash
+git clone [https://github.com/YourUsername/Thandeka-Ngambu-Assignment-1-Part-2.git](https://github.com/YourUsername/Thandeka-Ngambu-Assignment-1-Part-2.git)
+
+```
+
+
+2. **Navigate into the project folder**:
+```bash
+cd Thandeka-Ngambu-Assignment-1-Part-2
+
+```
+
+
+
+---
+
+## Usage
+
+1. Open `index.html` in your web browser to launch the homepage.
+2. Use the top navigation menu to browse through:
+* **About Us** (`pages/About.html`)
+* **Services** (`pages/services.html`)
+* **Enquiry** (`pages/Enquiry.html`)
+* **Contact Us** (`pages/ContactUs.html`)
+
+
+
+---
+
+## Author & License
+
+* **Author**: Thandeka Ngambu
+* **Project**: Assignment 1 Part 2 - Edu-Motherwell Development Organisation Website
+
+```
+
+```

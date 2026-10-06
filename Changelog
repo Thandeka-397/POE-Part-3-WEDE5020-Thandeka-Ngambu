@@ -1,0 +1,33 @@
+# Changelog
+
+
+All notable changes to the **Edu-Motherwell Development Organisation Website** project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
+
+## [1.0.0] - 2026-09-17
+
+
+### Added
+- **Core Site Structure & HTML Pages**:
+  - `index.html`: Main landing page introducing the organisation, mission, and key highlights.
+  - `pages/About.html`: Background information, history, vision, and organizational values.
+  - `pages/services.html`: Overview of community development, literacy, and educational programs offered.
+  - `pages/Enquiry.html`: Form page allowing community members and prospective partners to submit general inquiries.
+  - `pages/ContactUs.html`: Contact details, physical location information, and direct communication channels.
+
+
+- **Stylesheets & Layout**:
+  - `css/style.css`: Primary CSS file defining color palettes, typography, responsive layouts, header/footer styling, and form element styles.
+
+
+- **Visual Assets**:
+  - `images/Company.logo.jpg`: Custom organizational header logo.
+  - Program and event imagery including `Literacy.jpg`, `school-org.jpg`, `Picture-12.jpg`, `IMG_2302.jpg`, `1600px_COLOURBOX14862248.jpg`, and `facebook.logo.avif`.
+
+
+- **Documentation**:
+  - Initial `README.md` containing repository overview, structure, usage instructions, and Harvard-formatted references.
+  - Initial `CHANGELOG.md` to track project revision history.

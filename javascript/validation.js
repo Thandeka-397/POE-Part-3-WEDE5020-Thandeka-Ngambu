@@ -1,137 +1,171 @@
-document.addEventListener("DOMContentLoaded", () => {
+// validation.js - Form validation aligned with ContactUs.html and Enquiry.html
+document.addEventListener('DOMContentLoaded', () => {
 
-  // Find the contact form.
-  const form = document.getElementById("contactForm");
-
-  // Stop if this is not the contact page.
-  if (!form) return;
-
-
-  /* ---------- EMAIL PATTERN ---------- */
-
-  // This pattern checks for a basic structure such as:
-  // student@example.com
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-  /* ---------- FORM SUBMISSION EVENT ---------- */
-
-  form.addEventListener("submit", (event) => {
-
-    // Stop the browser from refreshing/submitting the page.
-    event.preventDefault();
-
-    // Assume the form is valid until an error is found.
-    let isValid = true;
-
-
-    /* ---------- FIND FORM ELEMENTS ---------- */
-
-    const fullName =
-      document.getElementById("fullName");
-
-    const contactNumber =
-      document.getElementById("Contact Number");
-
-    const email =
-      document.getElementById("Email");
-
-    const message =
-      document.getElementById("I am looking for...");
-
-    const formStatus =
-      document.getElementById("formStatus");
-
-      /* ---------- RESET OLD ERRORS ---------- */
-
-    formStatus.classList.remove("success");
-
-    resetErrors([
-      fullName,
-      contactNumber,
-      email,
-      message
-    ]);
-
-
-    /* ---------- VALIDATE FULL NAME ---------- */
-
-    if (fullName.value.trim().length < 3) {
-      showError(fullName, "nameError");
-      isValid = false;
+    // Helper function to display error messages in red
+    function displayError(errorElement, message) {
+        if (errorElement) {
+            if (errorElement.textContent.trim() === "") {
+                errorElement.textContent = message;
+            }
+            errorElement.style.cssText = 'color: #dc3545 !important; font-size: 0.85rem; display: block !important; margin-top: 4px;';
+        }
     }
 
-
-    /* ---------- VALIDATE CONTACT NUMBER ---------- */
-
-    if (!contactNumber.value(contactNumber.value.trim())) {
-      showError(contactNumber, "Contact NumberError");
-      isValid = false;
+    // Helper function to hide error messages
+    function hideError(errorElement) {
+        if (errorElement) {
+            errorElement.style.display = 'none';
+        }
     }
 
+    // --- 1. CONTACT US PAGE VALIDATION ---
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        // Hide all errors initially
+        contactForm.querySelectorAll('.error-message').forEach(el => hideError(el));
 
-    /* ---------- VALIDATE EMAIL ---------- */
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            let isValid = true;
 
-    if (email.test === "") {
-      showError(email, "emailError");
-      isValid = false;
+            // Full Name validation (input name="fullname", span id="nameError")[cite: 2]
+            const fullname = contactForm.querySelector('input[name="fullname"]');
+            const nameError = document.getElementById('nameError');
+            if (fullname) {
+                if (fullname.value.trim() === "" || fullname.value.trim().length < 3) {
+                    displayError(nameError, "Full Name is required (minimum 3 characters).");
+                    isValid = false;
+                } else {
+                    hideError(nameError);
+                }
+            }
+
+            // Contact Number validation (input name="phone", span id="Contact NumberError")[cite: 2]
+            const phone = contactForm.querySelector('input[name="phone"]');
+            const phoneError = document.getElementById('Contact NumberError');
+            if (phone) {
+                if (phone.value.trim() === "" || phone.value.trim().length < 3) {
+                    displayError(phoneError, "Contact Number is required (minimum 3 characters).");
+                    isValid = false;
+                } else {
+                    hideError(phoneError);
+                }
+            }
+
+            // Email validation (input name="email", span id="EmailError")[cite: 2]
+            const email = contactForm.querySelector('input[name="email"]');
+            const emailError = document.getElementById('EmailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email) {
+                if (email.value.trim() === "" || !emailRegex.test(email.value.trim()) || email.value.trim().length < 3) {
+                    displayError(emailError, "Please enter a valid Email (minimum 3 characters).");
+                    isValid = false;
+                } else {
+                    hideError(emailError);
+                }
+            }
+
+            // Intent / Message validation (input name="intent", span id="I am looking for...Error")[cite: 2]
+            const intent = contactForm.querySelector('input[name="intent"]');
+            const intentError = document.getElementById('I am looking for...Error');
+            if (intent) {
+                if (intent.value.trim().length > 0 && intent.value.trim().length < 3) {
+                    displayError(intentError, "Information required... (minimum 3 characters).");
+                    isValid = false;
+                } else {
+                    hideError(intentError);
+                }
+            }
+
+            if (isValid) {
+                alert('Contact form submitted successfully!');
+            }
+        });
     }
 
+    // --- 2. ENQUIRY PAGE VALIDATION ---
+    // Note: If Enquiry.html doesn't have an ID on its form tag yet, 
+    // this targets the first <form> element on the Enquiry page automatically.
+    const enquiryForm = document.querySelector('main.enquiry-container form') || document.getElementById('enquiryForm');
+    if (enquiryForm) {
+        enquiryForm.querySelectorAll('.error-message').forEach(el => hideError(el));
 
-    /* ---------- VALIDATE MESSAGE ---------- */
+        enquiryForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            let isValid = true;
 
-    if (message.value.trim().length < 10) {
-      showError(message, "i am lookinhg for...Error");
-      isValid = false;
+            // Full Name (input name="fullname")[cite: 3]
+            const fullname = enquiryForm.querySelector('input[name="fullname"]');
+            let nameErr = document.getElementById('enquiryNameError');
+            if (fullname) {
+                if (!nameErr) {
+                    nameErr = document.createElement('span');
+                    nameErr.className = 'error-message';
+                    fullname.parentNode.appendChild(nameErr);
+                }
+                if (fullname.value.trim() === "" || fullname.value.trim().length < 3) {
+                    displayError(nameErr, "Full Name is required (minimum 3 characters).");
+                    isValid = false;
+                } else {
+                    hideError(nameErr);
+                }
+            }
+
+            // Email (input name="email")[cite: 3]
+            const email = enquiryForm.querySelector('input[name="email"]');
+            let emailErr = document.getElementById('enquiryEmailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email) {
+                if (!emailErr) {
+                    emailErr = document.createElement('span');
+                    emailErr.className = 'error-message';
+                    email.parentNode.appendChild(emailErr);
+                }
+                if (email.value.trim() === "" || !emailRegex.test(email.value.trim())) {
+                    displayError(emailErr, "Please enter a valid Email address.");
+                    isValid = false;
+                } else {
+                    hideError(emailErr);
+                }
+            }
+
+            // Enquiry Category (select name="category")[cite: 3]
+            const category = enquiryForm.querySelector('select[name="category"]');
+            let catErr = document.getElementById('enquiryCategoryError');
+            if (category) {
+                if (!catErr) {
+                    catErr = document.createElement('span');
+                    catErr.className = 'error-message';
+                    category.parentNode.appendChild(catErr);
+                }
+                if (category.value === "") {
+                    displayError(catErr, "Please select an enquiry category.");
+                    isValid = false;
+                } else {
+                    hideError(catErr);
+                }
+            }
+
+            // Specific Request / Message (textarea name="message")[cite: 3]
+            const message = enquiryForm.querySelector('textarea[name="message"]');
+            let msgErr = document.getElementById('enquiryMessageError');
+            if (message) {
+                if (!msgErr) {
+                    msgErr = document.createElement('span');
+                    msgErr.className = 'error-message';
+                    message.parentNode.appendChild(msgErr);
+                }
+                if (message.value.trim() === "" || message.value.trim().length < 3) {
+                    displayError(msgErr, "Specific Request is required (minimum 3 characters).");
+                    isValid = false;
+                } else {
+                    hideError(msgErr);
+                }
+            }
+
+            if (isValid) {
+                alert('Enquiry submitted successfully!');
+            }
+        });
     }
-
-
-    /* ---------- SUCCESS ---------- */
-
-    if (isValid) {
-      formStatus.classList.add("success");
-
-      // Clear all entered values after successful validation.
-      form.reset();
-    }
-  });
-
-
-  /* ========================================================
-     FUNCTION: showError
-     Adds the error class to an input and displays its message.
-     ======================================================== */
-
-  function showError(inputElement, errorSpanId) {
-
-    inputElement.classList.add("error");
-
-    const errorSpan =
-      document.getElementById(errorSpanId);
-
-    if (errorSpan) {
-      errorSpan.classList.add("visible");
-    }
-  }
-
-
-  /* ========================================================
-     FUNCTION: resetErrors
-     Removes all old error styles/messages before validation.
-     ======================================================== */
-
-  function resetErrors(elements) {
-
-    elements.forEach((element) => {
-      element.classList.remove("error");
-    });
-
-    const errorSpans =
-      document.querySelectorAll(".error-message");
-
-    errorSpans.forEach((span) => {
-      span.classList.remove("visible");
-    });
-  }
-
 });

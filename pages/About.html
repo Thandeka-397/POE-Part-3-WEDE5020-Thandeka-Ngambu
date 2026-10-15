@@ -26,6 +26,9 @@
       </div>
       <span class="brand">Edu-Motherwell Development Organisation</span>
     </a>
+<div class="search-container" style="text-align: center; margin: 20px 0;">
+            <input type="text" id="aboutSearchInput" placeholder="Search about our organisation..." style="padding: 10px; width: 60%; max-width: 400px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
 
     <nav class="site-nav" aria-label="Main Navigation">
       <a href="../index.html">Home</a>
@@ -116,5 +119,13 @@
         </div>
     </footer>
 
+    <!-- Initialize the live search utility for the About page cards -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initLiveSearch === 'function') {
+                initLiveSearch('#aboutSearchInput', '.about-card');
+            }
+        });
+    </script>
 </body>
 </html>
